@@ -1,12 +1,19 @@
 import React from "react";
 
-function SelectBox({ onChangeCallback, measure /*inputList*/ }) {
+function SelectBox({ onChangeCallback, onChangeConta }) {
   return (
-    <div className="text-black h-12 rounded-lg">
-      <select onChange={(e) => onChangeCallback(e.target.value)}>
+    <div>
+      <select
+        className="text-black  text-xl text-center rounded-lg h-10 w-60 relative   "
+        onChange={(e) => onChangeCallback(e.target.value)}
+      >
         <option value="">Selecione uma medida</option>
-        <option value="Xícara">Xícara</option>
-        <option value="ml">ml</option>
+        <option value="250">Xícara de Chá</option>
+        <option value="200">Copo Americano</option>
+        <option value="5">Colher de Chá</option>
+        <option value="15">Colher de Sopa</option>
+        <option value="5">Colher de Sobremesa</option>
+        <option value="2">Colher de Café</option>
       </select>
     </div>
   );

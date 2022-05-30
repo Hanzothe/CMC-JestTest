@@ -3,39 +3,42 @@ import "../global.css";
 import SelectBox from "./SelectBox";
 
 export default function Index() {
-  const [nInit, setnInit] = useState(null);
+  const [numberToBeMeasure, setNumberToBeMeasure] = useState(0);
   const [print, setPrint] = useState(false);
-  const [measure, setMeasure] = useState();
+  const [selectedMeasure, setSelectedMeasure] = useState();
+  const Result = selectedMeasure * numberToBeMeasure;
 
-  function getnInit(val) {
-    setnInit(val.target.value);
-
+  function getNumberToBeMeasure(val) {
+    setNumberToBeMeasure(val.target.value);
     setPrint(false);
     console.warn(val.target.value);
   }
   return (
     <div className="flex flex-col gap-4 items-center text-white text-2xl ">
-      <h1>{measure} para ml!</h1>
+      <h1 className="text-7xl">Conversor de Medidas Culinárias</h1>
+      <h1 className="text-2xl">
+        {" "}
+        Digite o valor e escolha a medida a ser convertido em ml!
+      </h1>
       <input
         type="Number"
-        className="border-solid border-brandB border-2 h-10 w-60 rounded-lg text-black text-center "
-        onChange={getnInit}
+        className="border-solid border-brandB  border-2 h-10 w-60 rounded-lg text-black text-center"
+        onChange={getNumberToBeMeasure}
       />
+      <SelectBox onChangeCallback={setSelectedMeasure} />
       <button
-        className="border-solid border-2 hover:bg-brandD bg-brandC border-brandB text-white h-20 w-60 rounded-lg  "
+        className="border-solid border-2 hover:bg-brandD bg-brandC border-brandB text-white h-20 w-60 rounded-lg drop-shadow-md hover:drop-shadow-xl transition duration-150 ease-out hover:ease-in"
         onClick={() => setPrint(true)}
       >
-        Convert
+        Converter
       </button>
       {print ? (
         <span className="border-solid bg-white text-center border-brandB border-2 h-10 w-60 rounded-lg text-black ">
-          {nInit}
+          {Result}ml
         </span>
       ) : (
         <span className="border-solid bg-white text-center border-brandB border-2 h-10 w-60 rounded-lg text-black "></span>
       )}
-
-      <SelectBox onChangeCallback={setMeasure} />
     </div>
   );
 }
