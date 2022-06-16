@@ -1,44 +1,68 @@
 import React, { useState } from "react";
 import "../global.css";
-import SelectBox from "./SelectBox";
+import Calcml from "./Calcml";
+import barbellimg from "../images/barbell-thin.svg";
+import dropimg from "../images/drop-thin.svg";
+import coffeeimg from "../images/coffee-thin.svg";
 
 export default function Index() {
-  const [numberToBeMeasure, setNumberToBeMeasure] = useState(0);
-  const [print, setPrint] = useState(false);
-  const [selectedMeasure, setSelectedMeasure] = useState();
-  const Result = selectedMeasure * numberToBeMeasure;
+  const [measureType, setMeasureType] = useState(null);
+  const [outputType, setOutputType] = useState(null);
 
-  function getNumberToBeMeasure(val) {
-    setNumberToBeMeasure(val.target.value);
-    setPrint(false);
-    console.warn(val.target.value);
-  }
+  const measureTypes = {
+    ML: {
+      title: "Líquidos(ml)",
+      output: 2,
+      image: {
+        source: dropimg,
+        alt: "Imagem de uma gota",
+      },
+    },
+    G: {
+      title: "Peso(g)",
+      output: "j",
+      image: {
+        source: barbellimg,
+        alt: "Imagem de um peso de academia",
+      },
+    },
+    X: {
+      title: "Xícaras",
+      output: 4,
+      image: {
+        source: coffeeimg,
+        alt: "Imagem de uma Xícara",
+      },
+    },
+  };
+
   return (
-    <div className="flex flex-col gap-4 items-center text-white text-2xl ">
-      <h1 className="text-7xl">Conversor de Medidas Culinárias</h1>
-      <h1 className="text-2xl">
-        {" "}
-        Digite o valor e escolha a medida a ser convertido em ml!
-      </h1>
-      <input
-        type="Number"
-        className="border-solid border-brandB  border-2 h-10 w-60 rounded-lg text-black text-center"
-        onChange={getNumberToBeMeasure}
-      />
-      <SelectBox onChangeCallback={setSelectedMeasure} />
-      <button
-        className="border-solid border-2 hover:bg-brandD bg-brandC border-brandB text-white h-20 w-60 rounded-lg drop-shadow-md hover:drop-shadow-xl transition duration-150 ease-out hover:ease-in"
-        onClick={() => setPrint(true)}
-      >
-        Converter
-      </button>
-      {print ? (
-        <span className="border-solid bg-white text-center border-brandB border-2 h-10 w-60 rounded-lg text-black ">
-          {Result}ml
-        </span>
-      ) : (
-        <span className="border-solid bg-white text-center border-brandB border-2 h-10 w-60 rounded-lg text-black "></span>
-      )}
-    </div>
+    <>
+      <div className="flex flex-col gap-12 items-center text-white text-7xl">
+        <h1>Conversor de Medidas Culinárias</h1>
+
+        <div className="flex flex-row items-center gap-6">
+          {Object.entries(measureTypes).map(([key, value]) => {
+            return (
+              <>
+                <button
+                  key={key}
+                  onClick={() => {
+                    setMeasureType(value.title);
+                    setOutputType(value.output);
+                  }}
+                  type="button"
+                  className="border-4 border-transparent focus:border-brandB focus:outline-none hover:border-brandB hover:bg-brandD bg-brandC  w-72 h-72 rounded-2xl py-5 flex flex-col items-center text-4xl transition duration-300 ease-in-out"
+                >
+                  <img src={value.image.source} alt={value.image.alt} />
+                  <span>{value.title}</span>
+                </button>
+              </>
+            );
+          })}
+        </div>
+        <Calcml measureType={measureType} outputType={outputType} />
+      </div>
+    </>
   );
 }

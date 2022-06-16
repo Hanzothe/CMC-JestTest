@@ -1,6 +1,6 @@
 import React from "react";
 
-function SelectBox({ onChangeCallback, onChangeConta }) {
+function SelectBox({ onChangeCallback }) {
   return (
     <div>
       <select
