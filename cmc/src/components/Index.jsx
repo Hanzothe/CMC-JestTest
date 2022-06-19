@@ -18,22 +18,22 @@ export default function Index() {
         alt: "Imagem de uma gota",
       },
     },
-    G: {
-      title: "Peso(g)",
-      output: "j",
-      image: {
-        source: barbellimg,
-        alt: "Imagem de um peso de academia",
-      },
-    },
-    X: {
-      title: "Xícaras",
-      output: 4,
-      image: {
-        source: coffeeimg,
-        alt: "Imagem de uma Xícara",
-      },
-    },
+    // G: {
+    //   title: "Peso(g)",
+    //   output: "j",
+    //   image: {
+    //     source: barbellimg,
+    //     alt: "Imagem de um peso de academia",
+    //   },
+    // },
+    // X: {
+    //   title: "Xícaras",
+    //   output: 4,
+    //   image: {
+    //     source: coffeeimg,
+    //     alt: "Imagem de uma Xícara",
+    //   },
+    // },
   };
 
   return (
@@ -61,6 +61,9 @@ export default function Index() {
             );
           })}
         </div>
+        <span className="text-2xl">
+          Selecione a medida final clicando no card e a inicial abaixo
+        </span>
         <Calcml measureType={measureType} outputType={outputType} />
       </div>
     </>

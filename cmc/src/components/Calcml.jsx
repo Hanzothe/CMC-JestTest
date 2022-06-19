@@ -24,7 +24,10 @@ export default function Calcml({ measureType, outputType }) {
           onChange={getNumberToBeMeasure}
         />
         <SelectBox onChangeCallback={setSelectedInputMeasure} />
-        {measureType}
+
+        <span className="bg-white border-solid border-brandB  border-2 h-10 w-60 rounded-lg text-black text-center">
+          {measureType}
+        </span>
         {/* {outputType} */}
         <span className="border-solid bg-white text-center border-brandB border-2 h-10 w-60 rounded-lg text-black ">
           {Result !== 0 && getResult(Result)}
